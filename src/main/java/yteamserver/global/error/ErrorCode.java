@@ -22,7 +22,7 @@ public enum ErrorCode {
     VIDEO_BOOKMARK_NOT_FOUND(HttpStatus.BAD_REQUEST, "북마크로 등록되지 않은 비디오입니다."),
 
     CHARACTER_NOT_FOUND(HttpStatus.BAD_REQUEST, "캐릭터가 존재하지 않습니다."),
-    USER_CHARACTER_NOT_FOUND(HttpStatus.BAD_REQUEST, "사용자의 캐릭터가 존재하지 않습니다"),
+    USER_CHARACTER_NOT_FOUND(HttpStatus.NOT_FOUND, "사용자의 캐릭터가 존재하지 않습니다"),
 
     POINTS_NOT_ENOUGH(HttpStatus.BAD_REQUEST, "포인트가 부족합니다."),
 
