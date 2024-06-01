@@ -32,7 +32,7 @@ public class VideoController {
 
     @Operation(summary = "숏폼 비디오 업로드", description = "숏폼 비디오를 업로드합니다.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "비디오 생성 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = CreateVideoReq.class))}),
+            @ApiResponse(responseCode = "200", description = "비디오 생성 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
             @ApiResponse(responseCode = "400", description = "비디오 생성 실패", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
     })
     @PostMapping("/create")
