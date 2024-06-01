@@ -1,10 +1,12 @@
 package yteamserver.domain.users.presentation;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,14 +18,21 @@ import yteamserver.domain.users.presentation.response.UserCharacterGetResponse;
 import yteamserver.domain.users.dto.UserPointReq;
 import yteamserver.global.response.Response;
 
+@Tag(name = "User & User Character", description = "User & User Character API")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
+    @Operation(summary = "유저 캐릭터 조회", description = "유저의 캐릭터를 조회합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "유저의 캐릭터 조회 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+            @ApiResponse(responseCode = "404", description = "유저를 찾을 수 없습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+            @ApiResponse(responseCode = "400", description = "유저의 캐릭터가 존재하지 않습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
+    })
     @GetMapping("/{user_id}/character")
-    public ResponseEntity<Response> getUserCharacter(@PathVariable("user_id") Long userId) {
+    public ResponseEntity<Response> getUserCharacter(@Parameter(description = "user_id를 입력해 주세요") @PathVariable("user_id") Long userId) {
         UserCharacterGetResponse response = userService.getUserCharacter(userId);
 
         return Response.of(HttpStatus.OK, response);
@@ -44,8 +53,14 @@ public class UserController {
         return Response.of(HttpStatus.OK);
     }
 
+    @Operation(summary = "유저 캐릭터 생성", description = "유저의 캐릭터를 생성합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "유저의 캐릭터 생성 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+            @ApiResponse(responseCode = "404", description = "유저를 찾을 수 없습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+            @ApiResponse(responseCode = "400", description = "유저가 존재하지 않습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
+    })
     @PostMapping("/{user_id}/character")
-    public ResponseEntity<Response> createUserCharacter(@PathVariable("user_id") Long userId,
+    public ResponseEntity<Response> createUserCharacter(@Parameter(description = "user_id를 입력해 주세요") @PathVariable("user_id") Long userId,
                                                         @RequestBody UserCharacterCreateRequest request) {
         UserCharacterCreateResponse response = userService.createUserCharacter(userId, request);
 
