@@ -39,6 +39,9 @@ public class ViewHomepageRes {
         private String content;
 
         @Schema(type = "string", example = "https://neordinary.s3.eu-north-1.amazonaws.com/beans.png", description = "광고 이미지를 출력합니다.")
+        private String imageUrl;
+
+        @Schema(type = "string", example = "https://smartstore.naver.com", description = "광고 링크로 이동합니다.")
         private String adUrl;
     }
 
