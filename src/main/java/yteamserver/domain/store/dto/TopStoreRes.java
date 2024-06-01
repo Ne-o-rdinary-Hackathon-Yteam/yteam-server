@@ -2,7 +2,6 @@ package yteamserver.domain.store.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import yteamserver.domain.store.domain.Store;
 
 import java.util.List;
 
@@ -16,6 +15,11 @@ public class TopStoreRes {
     public TopStoreRes(String storeName, String imgUrl, String hashtags) {
         this.storeName = storeName;
         this.imgUrl = imgUrl;
+
+        if(hashtags == null) {
+           return;
+        }
+
         String[] hashtagList = hashtags.split("#");
 
         for (String hashtag : hashtagList) {
