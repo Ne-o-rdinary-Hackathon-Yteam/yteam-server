@@ -1,7 +1,8 @@
-package domain.video;
+package yteamserver.domain.video;
 
-import domain.store.Store;
-import domain.users.Users;
+import yteamserver.domain.common.BaseEntity;
+import yteamserver.domain.store.Store;
+import yteamserver.domain.users.Users;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "Video")
-public class Video {
+public class Video extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
