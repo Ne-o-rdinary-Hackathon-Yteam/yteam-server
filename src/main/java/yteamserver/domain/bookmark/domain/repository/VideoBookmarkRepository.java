@@ -5,4 +5,5 @@ import yteamserver.domain.bookmark.domain.VideoBookmark;
 
 public interface VideoBookmarkRepository extends JpaRepository<VideoBookmark, Long> {
     Boolean existsByUser_IdAndVideo_Id(Long userId, Long videoId);
+    void deleteByUser_IdAndVideo_Id(Long userId, Long videoId);
 }

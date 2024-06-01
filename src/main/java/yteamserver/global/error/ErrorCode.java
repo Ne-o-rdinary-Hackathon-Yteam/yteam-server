@@ -19,6 +19,7 @@ public enum ErrorCode {
 
     VIDEO_NOT_FOUND(HttpStatus.NOT_FOUND, "비디오가 존재하지 않습니다."),
     VIDEO_ALREADY_BOOKMARKED(HttpStatus.BAD_REQUEST, "이미 북마크로 등록된 비디오입니다."),
+    VIDEO_BOOKMARK_NOT_FOUND(HttpStatus.BAD_REQUEST, "북마크로 등록되지 않은 비디오입니다."),
 
     VALIDATION_ERROR(HttpStatus.BAD_REQUEST, "입력값이 올바르지 않습니다."),
     IMAGE_NOT_FOUND(HttpStatus.BAD_REQUEST, "이미지가 존재하지 않습니다."),
