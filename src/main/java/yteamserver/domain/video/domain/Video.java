@@ -26,10 +26,10 @@ public class Video extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private Users users;
+    private Users user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id", nullable = true)
+    @JoinColumn(name = "store_id")
     private Store store;
 
     @Column(name = "video_url")
@@ -40,10 +40,10 @@ public class Video extends BaseEntity {
 
 
     @Builder
-    public Video(String title, Integer viewCount, Users users, Store store, String videoUrl, String thumbnailUrl) {
+    public Video(String title, Integer viewCount, Users user, Store store, String videoUrl, String thumbnailUrl) {
         this.title = title;
         this.viewCount = viewCount;
-        this.users = users;
+        this.user = user;
         this.store = store;
         this.videoUrl = videoUrl;
         this.thumbnailUrl = thumbnailUrl;

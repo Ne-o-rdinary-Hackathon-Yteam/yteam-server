@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import yteamserver.domain.video.application.VideoService;
 import yteamserver.domain.video.dto.CreateVideoReq;
-import yteamserver.domain.video.dto.CreateVideoRes;
 import yteamserver.domain.video.dto.GetVidedoRes;
 import yteamserver.global.response.Response;
 
@@ -41,8 +39,8 @@ public class VideoController {
     public ResponseEntity<Response> createVideo(
             @Parameter(description = "게시물의 id를 입력해주세요.") @ModelAttribute CreateVideoReq createVideoReq
     ) {
-        CreateVideoRes videoRes = videoService.createVideo(createVideoReq);
-        return Response.of(HttpStatus.OK, videoRes);
+        videoService.createVideo(createVideoReq);
+        return Response.of(HttpStatus.CREATED);
     }
 
     @Operation(summary = "숏폼 비디오 조회", description = "숏폼 비디오를 10개 조회합니다.")
