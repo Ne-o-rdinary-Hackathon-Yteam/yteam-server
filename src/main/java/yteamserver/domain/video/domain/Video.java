@@ -21,8 +21,8 @@ public class Video extends BaseEntity {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "content")
-    private String content;
+    @Column(name = "view_count")
+    private Integer viewCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -35,13 +35,17 @@ public class Video extends BaseEntity {
     @Column(name = "video_url")
     private String videoUrl;
 
+    @Column(name = "thumbnail_url")
+    private String thumbnailUrl;
+
 
     @Builder
-    public Video(String title, String content, Users users, Store store, String videoUrl) {
+    public Video(String title, Integer viewCount, Users users, Store store, String videoUrl, String thumbnailUrl) {
         this.title = title;
-        this.content = content;
+        this.viewCount = viewCount;
         this.users = users;
         this.store = store;
         this.videoUrl = videoUrl;
+        this.thumbnailUrl = thumbnailUrl;
     }
 }
