@@ -25,4 +25,6 @@ public class GetVidedoRes {
     private String videoUrl;
     @Schema(description = "상품 구매 링크", example = "https://smartstore.naver.com/sweetfarmers/products/5300481447?")
     private String storeLink;
+    @Schema(description = "북마크 여부", example = "true")
+    private Boolean bookmarked;
 }
