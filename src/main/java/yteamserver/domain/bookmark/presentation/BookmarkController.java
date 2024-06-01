@@ -32,7 +32,7 @@ public class BookmarkController {
     @PostMapping("/videos")
     public ResponseEntity<Response> createVideoBookmark(@RequestBody VideoBookmarkReq req) {
         bookmarkService.createVideoBookmark(req.getToken(), req.getVideoId());
-        return Response.of(HttpStatus.OK);
+        return Response.of(HttpStatus.CREATED);
     }
 
     @Operation(summary = "영상 북마크 삭제", description = "유저가 북마크한 영상을 북마크에서 제거합니다.")
