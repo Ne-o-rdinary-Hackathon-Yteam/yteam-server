@@ -14,6 +14,7 @@ public enum ErrorCode {
     EXPIRED_REFRESH_TOKEN(HttpStatus.UNAUTHORIZED, "만료된 리프레시 토큰입니다."),
 
     USER_NOT_FOUND(HttpStatus.NOT_FOUND, "사용자를 찾을 수 없습니다."),
+    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "가게를 찾을 수 없습니다."),
 
     PAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "요청한 페이지를 찾을 수 없습니다."),
 
@@ -22,7 +23,7 @@ public enum ErrorCode {
     VIDEO_BOOKMARK_NOT_FOUND(HttpStatus.BAD_REQUEST, "북마크로 등록되지 않은 비디오입니다."),
 
     CHARACTER_NOT_FOUND(HttpStatus.BAD_REQUEST, "캐릭터가 존재하지 않습니다."),
-    USER_CHARACTER_NOT_FOUND(HttpStatus.BAD_REQUEST, "사용자의 캐릭터가 존재하지 않습니다"),
+    USER_CHARACTER_NOT_FOUND(HttpStatus.NOT_FOUND, "사용자의 캐릭터가 존재하지 않습니다"),
 
     POINTS_NOT_ENOUGH(HttpStatus.BAD_REQUEST, "포인트가 부족합니다."),
 

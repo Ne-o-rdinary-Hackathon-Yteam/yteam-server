@@ -8,11 +8,11 @@ import lombok.Getter;
 @Getter
 public class VideoBookmarkReq {
     @Schema(description = "사용자 토큰",
-            example = "odkaj183-ga94-9aj3-1d81-djal194ns93")
+            example = "d6f6d982-cb17-4ce5-aab4-ba16e2e5f1d4")
     @NotNull
     private String token;
 
-    @Schema(description = "북마크할 비디오 아이디", example = "1")
+    @Schema(description = "북마크할 비디오 아이디", example = "47")
     private Long videoId;
 
     @Builder
