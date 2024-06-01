@@ -1,5 +1,6 @@
-package yteamserver.domain.characters;
+package yteamserver.domain.characters.domain;
 
+import yteamserver.domain.characters.Kind;
 import yteamserver.domain.common.BaseEntity;
 import yteamserver.domain.users.repository.Users;
 import jakarta.persistence.*;
@@ -16,18 +17,12 @@ public class Characters extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private Users users;
-
-    @Column(name = "image_url")
+    @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
-    @Column(name = "level")
+    @Column(name = "level", nullable = false)
     private Integer level;
 
-    @Column(name = "exp")
-    private Integer exp;
-
-
+    @Column(name = "kind", nullable = false)
+    private Kind kind;
 }
