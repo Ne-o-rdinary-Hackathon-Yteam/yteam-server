@@ -34,8 +34,7 @@ public class HomeService {
     public ViewHomepageRes viewHomepage(String token) {
 
         // 유저 파싱
-        Users users = userRepository.findByToken(token)
-                .orElseThrow(() -> new GeneralException(ErrorCode.USER_NOT_FOUND));
+        Users users = userRepository.findByToken(token).orElse(null);
 
 
         // 광고 목록 가져오기
@@ -54,7 +53,10 @@ public class HomeService {
         List<Video> recentlyFiveVideo = videoRepository.findRecentlyFive();
         List<ViewHomepageRes.VideoRes> videoResList = recentlyFiveVideo.stream()
                 .map(video -> {
-                    boolean isBookmarked = videoBookmarkRepository.findByUserIdAndVideoId(users.getId(), video.getId()).isPresent();
+                    boolean isBookmarked = false;
+                    if(users != null) {
+                        isBookmarked = videoBookmarkRepository.findByUserIdAndVideoId(users.getId(), video.getId()).isPresent();
+                    }
                     return ViewHomepageRes.VideoRes.builder()
                             .id(video.getId())
                             .title(video.getTitle())
@@ -76,14 +78,16 @@ public class HomeService {
                 .collect(Collectors.toList());
 
         //룰렛 돌리러 고고
-        int chance = users.getPoints() / 10;
-        ViewHomepageRes.CharacterRes characterRes = ViewHomepageRes.CharacterRes.builder()
-                .chance(chance)
-                .imageUrl(users.getUsersCharacters().get(0).getCharacters().getImageUrl())
-                .level(users.getUsersCharacters().get(0).getCharacters().getLevel())
-                .kind(users.getUsersCharacters().get(0).getCharacters().getKind())
-                .build();
-
+        ViewHomepageRes.CharacterRes characterRes = null;
+        if (users != null) {
+            int chance = users.getPoints() / 10;
+            characterRes = ViewHomepageRes.CharacterRes.builder()
+                    .chance(chance)
+                    .imageUrl(users.getUsersCharacters().get(0).getCharacters().getImageUrl())
+                    .level(users.getUsersCharacters().get(0).getCharacters().getLevel())
+                    .kind(users.getUsersCharacters().get(0).getCharacters().getKind())
+                    .build();
+        }
 
         // 합쳐서 리턴하기
         ViewHomepageRes viewHomepageRes = ViewHomepageRes.builder()
