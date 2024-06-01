@@ -1,6 +1,8 @@
-package domain.characters;
+package yteamserver.domain.bookmark;
 
-import domain.users.Users;
+import yteamserver.domain.common.BaseEntity;
+import yteamserver.domain.store.Store;
+import yteamserver.domain.users.Users;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -9,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "characters")
-public class Characters {
+@Table(name = "bookmark")
+public class Bookmark extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,14 +21,7 @@ public class Characters {
     @Column(name = "user_id")
     private Users users;
 
-    @Column(name = "image_url")
-    private String imageUrl;
-
-    @Column(name = "level")
-    private Integer level;
-
-    @Column(name = "exp")
-    private Integer exp;
-
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "store_id")
+    private Store store;
 }
