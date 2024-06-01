@@ -78,7 +78,7 @@ public class HomeService {
         int chance = newUser.getPoints() / 10;
         ViewHomepageRes.CharacterRes characterRes = ViewHomepageRes.CharacterRes.builder()
                 .chance(chance)
-                .cUrl(users.getUsersCharacters().get(0).getCharacters().getImageUrl())
+                .imageUrl(users.getUsersCharacters().get(0).getCharacters().getImageUrl())
                 .level(users.getUsersCharacters().get(0).getCharacters().getLevel())
                 .kind(users.getUsersCharacters().get(0).getCharacters().getKind())
                 .build();
@@ -89,7 +89,7 @@ public class HomeService {
                 .advertisements(advertisementResList)
                 .videos(videoResList)
                 .stores(storeResList)
-                .characterObjet(characterRes)
+                .characterObject(characterRes)
                 .build();
 
         return viewHomepageRes;
