@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "Video")
+@Table(name = "video")
 public class Video extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
