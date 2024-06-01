@@ -9,14 +9,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.*;
-import yteamserver.domain.bookmark.dto.VideoBookmarkReq;
 import yteamserver.domain.users.application.UserService;
 import yteamserver.domain.users.presentation.request.UserCharacterCreateRequest;
 import yteamserver.domain.users.presentation.response.UserCharacterCreateResponse;
 import yteamserver.domain.users.presentation.response.UserCharacterGetResponse;
 import yteamserver.domain.users.dto.UserPointReq;
-import yteamserver.domain.users.presentation.response.UserCharacterResponse;
 import yteamserver.global.response.Response;
 
 @RequiredArgsConstructor
