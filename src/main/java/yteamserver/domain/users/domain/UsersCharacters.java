@@ -7,8 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import yteamserver.domain.characters.domain.Characters;
 import yteamserver.domain.common.BaseEntity;
-import yteamserver.domain.users.domain.Level;
-import yteamserver.domain.users.domain.Users;
 
 @Entity
 @Getter
