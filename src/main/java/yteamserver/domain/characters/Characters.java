@@ -17,7 +17,7 @@ public class Characters extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     private Users users;
 
     @Column(name = "image_url")
