@@ -1,4 +1,4 @@
-package yteamserver.domain.users.repository;
+package yteamserver.domain.users.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import yteamserver.domain.characters.domain.Characters;
 import yteamserver.domain.common.BaseEntity;
+import yteamserver.domain.users.domain.Level;
+import yteamserver.domain.users.domain.Users;
 
 @Entity
 @Getter
@@ -26,7 +28,7 @@ public class UsersCharacters extends BaseEntity {
     private Characters characters;
 
     @Column(name = "level", nullable = false)
-    private Integer level;
+    private Level level;
 
     @Column(name = "exp", nullable = false)
     private Integer exp;
