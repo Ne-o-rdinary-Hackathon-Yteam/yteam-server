@@ -7,5 +7,5 @@ import yteamserver.domain.characters.domain.Kind;
 import java.util.Optional;
 
 public interface CharacterRepository extends JpaRepository<Characters, Long> {
-    Optional<Characters> findByKind(Kind kind);
+    Optional<Characters> findByKindAndLevel(Kind kind, Integer level);
 }
