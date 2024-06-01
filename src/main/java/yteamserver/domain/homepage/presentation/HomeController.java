@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import yteamserver.domain.common.dto.TokenDto;
 import yteamserver.domain.homepage.application.HomeService;
 import yteamserver.domain.homepage.dto.ViewHomepageRes;
 import yteamserver.domain.video.dto.CreateVideoReq;
@@ -31,7 +32,11 @@ public class HomeController {
             @ApiResponse(responseCode = "400", description = "홈 화면 조회 실패", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
     })
     @GetMapping("/view")
-    public ResponseEntity<Response> viewHomepage() {
+    public ResponseEntity<Response> viewHomepage(
+//            @Parameter(description = "token을 입력해주세요.") @RequestBody TokenDto tokenDto
+            ) {
+        // 항상 로그인 했다고 생각
+//        String token = tokenDto.getToken();
         ViewHomepageRes viewHomepageRes = homeService.viewHomepage();
         return Response.of(HttpStatus.OK, viewHomepageRes);
     }

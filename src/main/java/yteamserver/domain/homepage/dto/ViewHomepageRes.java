@@ -2,6 +2,8 @@ package yteamserver.domain.homepage.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
+import yteamserver.domain.characters.Kind;
+import yteamserver.domain.users.domain.Level;
 
 import java.util.List;
 
@@ -19,6 +21,8 @@ public class ViewHomepageRes {
 
     @Schema(description = "셀러 목록을 출력합니다.")
     private List<StoreRes> stores;
+
+    private CharacterRes characterObjet;
 
 
     @Data
@@ -62,8 +66,25 @@ public class ViewHomepageRes {
 
         @Schema(type = "string", example = "https://neordinary.s3.eu-north-1.amazonaws.com/beans.png", description = "Store image URL을 출력합니다.")
         private String imgUrl;
+
         @Schema(type = "string", example = "체리#비타민#영양가", description = "hashtags를 출력합니다.")
         private String hashtags;
+    }
+
+    @Data
+    @Builder
+    public static class CharacterRes {
+        @Schema(type = "enum", example = "당근", description = "캐릭터의 타입을 반환합니다.")
+        private Kind kind;
+
+        @Schema(type = "string", example = "https://neordinary.s3.eu-north-1.amazonaws.com/danggeun.png", description = "캐릭터 이미지의 url을 출력합니다.")
+        private String cUrl;
+
+        @Schema(type = "integer", example = "3", description = "룰렛 기회를 출력합니다.")
+        private Integer chance;
+
+        @Schema(type = "enum", example = "1", description = "캐릭터 레벨을 출력합니다.")
+        private Level level;
     }
 
 

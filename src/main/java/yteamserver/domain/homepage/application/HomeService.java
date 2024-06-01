@@ -8,6 +8,8 @@ import yteamserver.domain.homepage.domain.repository.AdvertisementRepository;
 import yteamserver.domain.homepage.dto.ViewHomepageRes;
 import yteamserver.domain.store.domain.Store;
 import yteamserver.domain.store.domain.repository.StoreRepository;
+import yteamserver.domain.users.domain.Users;
+import yteamserver.domain.users.domain.repository.UserRepository;
 import yteamserver.domain.video.domain.Video;
 import yteamserver.domain.video.domain.repository.VideoRepository;
 
@@ -22,9 +24,14 @@ public class HomeService {
     private final AdvertisementRepository advertisementRepository;
     private final VideoRepository videoRepository;
     private final StoreRepository storeRepository;
+    private final UserRepository userRepository;
 
     @Transactional
     public ViewHomepageRes viewHomepage() {
+
+        // 유저 파싱
+//        Users users = userRepository.findJoinedUserById(1L).orElseThrow(RuntimeException::new);
+
 
         // 광고 목록 가져오기
         List<Advertisement> recentlyFiveAdvertisement = advertisementRepository.findRecentlyFive();
@@ -58,12 +65,22 @@ public class HomeService {
                         .build())
                 .collect(Collectors.toList());
 
+        //룰렛 돌리러 고고
+//        int chance = users.getPoints() / 10;
+//        ViewHomepageRes.CharacterRes.builder()
+//                .chance(chance)
+//                .cUrl()
+//                .level()
+//                .kind()
+//                .build();
+
 
         // 합쳐서 리턴하기
         ViewHomepageRes viewHomepageRes = ViewHomepageRes.builder()
                 .advertisements(advertisementResList)
                 .videos(videoResList)
                 .stores(storeResList)
+//                .characterObjet()
                 .build();
 
         return viewHomepageRes;
