@@ -33,6 +33,11 @@ dependencies {
     //Swagger, RestDocs
     implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.1.0'
     testImplementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-api', version: '2.1.0'
+
+    //s3 bucket
+    implementation platform('com.amazonaws:aws-java-sdk-bom:1.11.1000')
+    implementation 'com.amazonaws:aws-java-sdk-s3'
+    implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 }
 
 tasks.named('test') {

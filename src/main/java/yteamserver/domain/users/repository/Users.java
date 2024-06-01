@@ -22,14 +22,18 @@ public class Users extends BaseEntity {
     @Column(name = "profile_url")
     private String profileUrl;
 
+    @Column(name = "points")
+    private Integer points;
+
     @Column(name = "token")
     private String token;
 
 
     @Builder
-    public Users(String name, String profileUrl, String token) {
+    public Users(String name, String profileUrl, Integer points, String token) {
         this.name = name;
         this.profileUrl = profileUrl;
+        this.points = points;
         this.token = token;
     }
 }
