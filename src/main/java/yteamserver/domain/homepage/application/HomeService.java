@@ -43,6 +43,7 @@ public class HomeService {
                         .id(ad.getId())
                         .title(ad.getTitle())
                         .content(ad.getContent())
+                        .imageUrl(ad.getImageUrl())
                         .adUrl(ad.getAdUrl())
                         .build())
                 .collect(Collectors.toList());
