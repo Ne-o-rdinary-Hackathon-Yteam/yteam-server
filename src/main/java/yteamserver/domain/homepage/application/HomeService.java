@@ -78,7 +78,7 @@ public class HomeService {
         ViewHomepageRes.CharacterRes characterRes = ViewHomepageRes.CharacterRes.builder()
                 .chance(chance)
                 .cUrl(users.getUsersCharacters().get(0).getCharacters().getImageUrl())
-                .level(users.getUsersCharacters().get(0).getLevel())
+                .level(users.getUsersCharacters().get(0).getCharacters().getLevel())
                 .kind(users.getUsersCharacters().get(0).getCharacters().getKind())
                 .build();
 

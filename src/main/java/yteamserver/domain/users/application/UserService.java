@@ -64,7 +64,6 @@ public class UserService {
         UsersCharacters usersCharacters = UsersCharacters.builder()
                 .users(user)
                 .characters(character)
-                .level(Level.SEED)
                 .exp(0)
                 .build();
 
