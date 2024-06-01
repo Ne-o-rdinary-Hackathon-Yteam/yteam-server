@@ -17,7 +17,7 @@ import yteamserver.global.response.Response;
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/{user_id}")
+    @GetMapping("/{user_id}/character")
     public ResponseEntity<Response> getUserCharacter(@PathVariable("user_id") Long userId) {
         UserCharacterResponse response = userService.getUserCharacter(userId);
 

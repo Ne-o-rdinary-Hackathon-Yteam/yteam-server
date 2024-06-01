@@ -3,7 +3,7 @@ package yteamserver.domain.video.domain;
 import lombok.Builder;
 import yteamserver.domain.common.BaseEntity;
 import yteamserver.domain.store.domain.Store;
-import yteamserver.domain.users.repository.Users;
+import yteamserver.domain.users.domain.Users;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
