@@ -11,11 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import yteamserver.domain.common.dto.TokenDto;
 import yteamserver.domain.homepage.application.HomeService;
 import yteamserver.domain.homepage.dto.ViewHomepageRes;
-import yteamserver.domain.video.dto.CreateVideoReq;
-import yteamserver.domain.video.dto.CreateVideoRes;
 import yteamserver.global.response.Response;
 
 @Tag(name = "Homepage", description = "Homepage API")
@@ -35,7 +32,7 @@ public class HomeController {
     public ResponseEntity<Response> viewHomepage(
             @Parameter(description = "token을 입력해 주세요") @PathVariable("token") String token
     ) {
-        ViewHomepageRes viewHomepageRes = homeService.viewHomepage();
+        ViewHomepageRes viewHomepageRes = homeService.viewHomepage(token);
         return Response.of(HttpStatus.OK, viewHomepageRes);
     }
 
