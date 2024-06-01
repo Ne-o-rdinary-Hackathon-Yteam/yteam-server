@@ -28,8 +28,8 @@ public class UserController {
     @Operation(summary = "유저 캐릭터 조회", description = "유저의 캐릭터를 조회합니다.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "유저의 캐릭터 조회 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "404", description = "유저를 찾을 수 없습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "유저의 캐릭터가 존재하지 않습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
+            @ApiResponse(responseCode = "404", description = "사용자를 찾을 수 없습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+            @ApiResponse(responseCode = "404", description = "사용자의 캐릭터가 존재하지 않습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
     })
     @GetMapping("/{user_id}/character")
     public ResponseEntity<Response> getUserCharacter(@Parameter(description = "user_id를 입력해 주세요") @PathVariable("user_id") Long userId) {
@@ -56,8 +56,8 @@ public class UserController {
     @Operation(summary = "유저 캐릭터 생성", description = "유저의 캐릭터를 생성합니다.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "유저의 캐릭터 생성 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "404", description = "유저를 찾을 수 없습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "유저가 존재하지 않습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
+            @ApiResponse(responseCode = "404", description = "사용자를 찾을 수 없습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+            @ApiResponse(responseCode = "400", description = "캐릭터가 존재하지 않습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
     })
     @PostMapping("/{user_id}/character")
     public ResponseEntity<Response> createUserCharacter(@Parameter(description = "user_id를 입력해 주세요") @PathVariable("user_id") Long userId,
