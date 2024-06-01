@@ -2,7 +2,7 @@ package yteamserver.domain.bookmark.domain;
 
 import yteamserver.domain.common.BaseEntity;
 import yteamserver.domain.store.domain.Store;
-import yteamserver.domain.users.repository.Users;
+import yteamserver.domain.users.domain.Users;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
