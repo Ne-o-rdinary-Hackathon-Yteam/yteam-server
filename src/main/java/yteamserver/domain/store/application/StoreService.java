@@ -2,6 +2,7 @@ package yteamserver.domain.store.application;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import yteamserver.domain.bookmark.domain.repository.StoreBookmarkRepository;
 import yteamserver.domain.store.domain.Store;
 import yteamserver.domain.store.domain.repository.StoreRepository;
 import yteamserver.domain.store.dto.GetTopStoresRes;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class StoreService {
     private final StoreRepository storeRepository;
+    private final StoreBookmarkRepository storeBookmarkRepository;
 
 
     public GetTopStoresRes getTopStore() {
@@ -22,9 +24,13 @@ public class StoreService {
         List<TopStoreRes> topStoreResList = new ArrayList<>();
 
         for (Store store : stores) {
+            // 업체 북마크 수 불러오기
+            Integer like = storeBookmarkRepository.countByStoreId(store.getId());
+
             topStoreResList.add(TopStoreRes.builder()
                     .storeName(store.getStoreName())
                     .imgUrl(store.getImgUrl())
+                    .likeCount(like)
                     .hashtags(store.getHashtags())
                     .build());
         }

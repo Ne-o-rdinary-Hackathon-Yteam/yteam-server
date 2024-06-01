@@ -9,12 +9,14 @@ import java.util.List;
 public class TopStoreRes {
     private String storeName;
     private String imgUrl;
+    private Integer likeCount;
     private List<String> hashtags;
 
     @Builder
-    public TopStoreRes(String storeName, String imgUrl, String hashtags) {
+    public TopStoreRes(String storeName, String imgUrl, Integer likeCount, String hashtags) {
         this.storeName = storeName;
         this.imgUrl = imgUrl;
+        this.likeCount = likeCount;
 
         if(hashtags == null) {
            return;
