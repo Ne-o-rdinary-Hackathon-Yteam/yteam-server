@@ -10,8 +10,8 @@ import yteamserver.domain.video.domain.Video;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "tag")
-public class Tag extends BaseEntity {
+@Table(name = "hashtag")
+public class HashTag extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
