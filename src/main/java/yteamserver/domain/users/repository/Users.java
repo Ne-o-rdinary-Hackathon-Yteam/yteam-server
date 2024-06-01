@@ -1,5 +1,6 @@
-package yteamserver.domain.users;
+package yteamserver.domain.users.repository;
 
+import lombok.Builder;
 import yteamserver.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -23,4 +24,12 @@ public class Users extends BaseEntity {
 
     @Column(name = "token")
     private String token;
+
+
+    @Builder
+    public Users(String name, String profileUrl, String token) {
+        this.name = name;
+        this.profileUrl = profileUrl;
+        this.token = token;
+    }
 }
