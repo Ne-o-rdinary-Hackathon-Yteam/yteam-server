@@ -13,6 +13,8 @@ import yteamserver.domain.users.domain.Users;
 import yteamserver.domain.users.domain.repository.UserRepository;
 import yteamserver.domain.video.domain.Video;
 import yteamserver.domain.video.domain.repository.VideoRepository;
+import yteamserver.global.error.ErrorCode;
+import yteamserver.global.error.GeneralException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,11 +31,11 @@ public class HomeService {
     private final VideoBookmarkRepository videoBookmarkRepository;
 
     @Transactional
-    public ViewHomepageRes viewHomepage() {
+    public ViewHomepageRes viewHomepage(String token) {
 
         // 유저 파싱
-//        Users users = userRepository.findJoinedUserById(1L).orElseThrow(RuntimeException::new);
-        Users users = userRepository.findById2(1L).orElseThrow(RuntimeException::new);
+        Users users = userRepository.findByToken(token)
+                .orElseThrow(() -> new GeneralException(ErrorCode.USER_NOT_FOUND));
 
 
         // 광고 목록 가져오기
@@ -73,9 +75,8 @@ public class HomeService {
                         .build())
                 .collect(Collectors.toList());
 
-//        룰렛 돌리러 고고
-        Users newUser = userRepository.findById(1L).orElseThrow(RuntimeException::new);
-        int chance = newUser.getPoints() / 10;
+        //룰렛 돌리러 고고
+        int chance = users.getPoints() / 10;
         ViewHomepageRes.CharacterRes characterRes = ViewHomepageRes.CharacterRes.builder()
                 .chance(chance)
                 .imageUrl(users.getUsersCharacters().get(0).getCharacters().getImageUrl())
