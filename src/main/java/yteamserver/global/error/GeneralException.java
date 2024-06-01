@@ -1,4 +1,4 @@
-package global.error;
+package yteamserver.global.error;
 
 import lombok.Getter;
 
