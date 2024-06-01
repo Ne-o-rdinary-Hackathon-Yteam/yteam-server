@@ -22,8 +22,6 @@ public class TopStoreRes {
 
         String[] hashtagList = hashtags.split("#");
 
-        for (String hashtag : hashtagList) {
-            this.hashtags.add(hashtag);
-        }
+        this.hashtags = List.of(hashtagList);
     }
 }
