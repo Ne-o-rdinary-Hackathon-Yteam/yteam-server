@@ -18,11 +18,11 @@ public class Video extends BaseEntity {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "user_id")
+    @JoinColumn(name = "user_id")
     private Users users;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "store_id", nullable = true)
+    @JoinColumn(name = "store_id", nullable = true)
     private Store store;
 
     @Column(name = "video_url")
