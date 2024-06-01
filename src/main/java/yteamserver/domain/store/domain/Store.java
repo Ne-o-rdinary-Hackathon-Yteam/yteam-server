@@ -1,4 +1,4 @@
-package yteamserver.domain.store.repository;
+package yteamserver.domain.store.domain;
 
 import lombok.Builder;
 import yteamserver.domain.common.BaseEntity;
