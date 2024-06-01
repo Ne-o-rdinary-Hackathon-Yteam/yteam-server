@@ -24,6 +24,8 @@ public enum ErrorCode {
     CHARACTER_NOT_FOUND(HttpStatus.BAD_REQUEST, "캐릭터가 존재하지 않습니다."),
     USER_CHARACTER_NOT_FOUND(HttpStatus.BAD_REQUEST, "사용자의 캐릭터가 존재하지 않습니다"),
 
+    POINTS_NOT_ENOUGH(HttpStatus.BAD_REQUEST, "포인트가 부족합니다."),
+
     VALIDATION_ERROR(HttpStatus.BAD_REQUEST, "입력값이 올바르지 않습니다."),
     IMAGE_NOT_FOUND(HttpStatus.BAD_REQUEST, "이미지가 존재하지 않습니다."),
 
