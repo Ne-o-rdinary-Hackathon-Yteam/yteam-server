@@ -1,6 +1,5 @@
 package yteamserver.domain.characters.domain;
 
-import yteamserver.domain.characters.Kind;
 import yteamserver.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;

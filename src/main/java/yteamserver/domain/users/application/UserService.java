@@ -2,7 +2,14 @@ package yteamserver.domain.users.application;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import yteamserver.domain.users.presentation.response.UserCharacterResponse;
+import org.springframework.transaction.annotation.Transactional;
+import yteamserver.domain.characters.domain.Characters;
+import yteamserver.domain.characters.domain.Kind;
+import yteamserver.domain.characters.domain.repository.CharacterRepository;
+import yteamserver.domain.users.domain.Level;
+import yteamserver.domain.users.presentation.request.UserCharacterCreateRequest;
+import yteamserver.domain.users.presentation.response.UserCharacterCreateResponse;
+import yteamserver.domain.users.presentation.response.UserCharacterGetResponse;
 import yteamserver.domain.users.domain.repository.UserCharacterRepository;
 import yteamserver.domain.users.domain.repository.UserRepository;
 import yteamserver.domain.users.domain.Users;
@@ -15,15 +22,16 @@ import yteamserver.global.error.GeneralException;
 public class UserService {
     private final UserRepository userRepository;
     private final UserCharacterRepository userCharacterRepository;
+    private final CharacterRepository characterRepository;
 
-    public UserCharacterResponse getUserCharacter(Long userId) {
+    public UserCharacterGetResponse getUserCharacter(Long userId) {
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new GeneralException(ErrorCode.USER_NOT_FOUND));
 
         UsersCharacters usersCharacters = userCharacterRepository.findByUsers(user)
                 .orElseThrow(() -> new GeneralException(ErrorCode.USER_CHARACTER_NOT_FOUND));
 
-        UserCharacterResponse response = UserCharacterResponse.from(usersCharacters.getCharacters(), usersCharacters);
+        UserCharacterGetResponse response = UserCharacterGetResponse.from(usersCharacters.getCharacters(), usersCharacters);
 
         return response;
     }
@@ -43,5 +51,25 @@ public class UserService {
                 .build();
 
         userRepository.save(user);
+    }
+
+    @Transactional
+    public UserCharacterCreateResponse createUserCharacter(Long userId, UserCharacterCreateRequest request) {
+        Users user = userRepository.findById(userId)
+                .orElseThrow(() -> new GeneralException(ErrorCode.USER_NOT_FOUND));
+
+        Characters character = characterRepository.findByKind(Kind.fromKind(request.getCharacterName()))
+                .orElseThrow(() -> new GeneralException(ErrorCode.CHARACTER_NOT_FOUND));
+
+        UsersCharacters usersCharacters = UsersCharacters.builder()
+                .users(user)
+                .characters(character)
+                .level(Level.SEED)
+                .exp(0)
+                .build();
+
+        usersCharacters = userCharacterRepository.save(usersCharacters);
+
+        return UserCharacterCreateResponse.from(usersCharacters);
     }
 }
