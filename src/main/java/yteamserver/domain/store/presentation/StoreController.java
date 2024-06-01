@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import yteamserver.domain.store.application.StoreService;
 import yteamserver.domain.store.dto.GetTopStoresRes;
-import yteamserver.domain.video.dto.CreateVideoReq;
 import yteamserver.global.response.Response;
 
 @Tag(name = "Store", description = "Store API")

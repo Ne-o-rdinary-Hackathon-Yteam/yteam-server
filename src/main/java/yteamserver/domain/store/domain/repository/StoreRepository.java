@@ -17,4 +17,9 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
             ") AS top_stores\n" +
             "ON s.id = top_stores.store_id LIMIT 6", nativeQuery = true)
     List<Store> findAllByViewCount();
+
+    @Query(value = "SELECT s.* FROM store s\n" +
+            " JOIN video v" +
+            " ON s.id = v.store_id ORDER BY v.created_at DESC LIMIT 10", nativeQuery = true)
+    List<Store> findRecentlyTop();
 }
