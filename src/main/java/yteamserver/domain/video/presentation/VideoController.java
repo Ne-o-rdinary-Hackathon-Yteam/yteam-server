@@ -33,7 +33,7 @@ public class VideoController {
     })
     @PostMapping("/create")
     public ResponseEntity<Response> createVideo(
-            @Parameter(description = "게시물의 id를 입력해주세요.") @RequestBody CreateVideoReq createVideoReq
+            @Parameter(description = "게시물의 id를 입력해주세요.") @ModelAttribute CreateVideoReq createVideoReq
     ) {
         CreateVideoRes videoRes = videoService.createVideo(createVideoReq);
         return Response.of(HttpStatus.OK, videoRes);
