@@ -25,6 +25,7 @@ public enum ErrorCode {
 
     GENRE_NOT_FOUND(HttpStatus.BAD_REQUEST, "존재하지 않는 장르입니다."),
     CHARACTER_NOT_FOUND(HttpStatus.BAD_REQUEST, "캐릭터가 존재하지 않습니다."),
+    USER_CHARACTER_NOT_FOUND(HttpStatus.BAD_REQUEST, "사용자의 캐릭터가 존재하지 않습니다"),
     MAP_NOT_FOUND(HttpStatus.BAD_REQUEST, "맵 정보가 존재하지 않습니다."),
     SCRIPT_NOT_FOUND(HttpStatus.BAD_REQUEST, "스크립트가 존재하지 않습니다."),
     GOAL_NOT_FOUND(HttpStatus.BAD_REQUEST, "존재하지 않는 목표 타입입니다."),
