@@ -35,7 +35,6 @@ public class HomeController {
     public ResponseEntity<Response> viewHomepage(
             @Parameter(description = "token을 입력해 주세요") @PathVariable("token") String token
     ) {
-        // 항상 로그인 했다고 생각
         ViewHomepageRes viewHomepageRes = homeService.viewHomepage();
         return Response.of(HttpStatus.OK, viewHomepageRes);
     }
