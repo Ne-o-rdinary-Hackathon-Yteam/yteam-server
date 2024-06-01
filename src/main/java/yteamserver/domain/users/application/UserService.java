@@ -16,6 +16,9 @@ import yteamserver.domain.users.domain.UsersCharacters;
 import yteamserver.global.error.ErrorCode;
 import yteamserver.global.error.GeneralException;
 
+import java.util.Comparator;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserService {
@@ -27,10 +30,17 @@ public class UserService {
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new GeneralException(ErrorCode.USER_NOT_FOUND));
 
-        UsersCharacters usersCharacters = userCharacterRepository.findByUsers(user)
+        List<UsersCharacters> usersCharactersList = userCharacterRepository.findByUsers(user);
+
+        if (usersCharactersList.isEmpty()) {
+            throw new GeneralException(ErrorCode.USER_CHARACTER_NOT_FOUND);
+        }
+
+        UsersCharacters maxLevelUsersCharacters = usersCharactersList.stream()
+                .max(Comparator.comparing(uc -> uc.getCharacters().getLevel()))
                 .orElseThrow(() -> new GeneralException(ErrorCode.USER_CHARACTER_NOT_FOUND));
 
-        UserCharacterGetResponse response = UserCharacterGetResponse.from(usersCharacters.getCharacters(), usersCharacters);
+        UserCharacterGetResponse response = UserCharacterGetResponse.from(maxLevelUsersCharacters.getCharacters(), maxLevelUsersCharacters);
 
         return response;
     }
