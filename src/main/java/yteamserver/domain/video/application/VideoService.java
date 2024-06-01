@@ -1,6 +1,9 @@
 package yteamserver.domain.video.application;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import yteamserver.domain.store.domain.Store;
@@ -11,7 +14,12 @@ import yteamserver.domain.video.domain.Video;
 import yteamserver.domain.video.domain.repository.VideoRepository;
 import yteamserver.domain.video.dto.CreateVideoReq;
 import yteamserver.domain.video.dto.CreateVideoRes;
+import yteamserver.domain.video.dto.GetVidedoRes;
 import yteamserver.global.config.s3.S3Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -49,5 +57,24 @@ public class VideoService {
                 .id(video.getId())
                 .build();
 
+    }
+
+    @Transactional
+    public Page<GetVidedoRes> getVideo(Pageable pageable) {
+        Page<Video> videosPage = videoRepository.findAll(pageable);
+
+        List<GetVidedoRes> findVideoResList = videosPage.getContent().stream()
+                .map(video -> GetVidedoRes.builder()
+                        .id(video.getId())
+                        .title(video.getTitle())
+                        .userName(video.getUsers().getName())
+                        .storeId(video.getStore().getId())
+                        .viewCount(video.getViewCount())
+                        .videoUrl(video.getVideoUrl())
+                        .ThumbnailUrl(video.getThumbnailUrl())
+                        .build())
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(findVideoResList, pageable, videosPage.getTotalElements());
     }
 }
