@@ -2,7 +2,6 @@ package yteamserver.domain.characters.domain;
 
 import yteamserver.domain.characters.Kind;
 import yteamserver.domain.common.BaseEntity;
-import yteamserver.domain.users.repository.Users;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
