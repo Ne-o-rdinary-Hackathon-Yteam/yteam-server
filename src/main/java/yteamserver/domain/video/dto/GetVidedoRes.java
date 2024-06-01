@@ -23,4 +23,6 @@ public class GetVidedoRes {
     private Integer viewCount;
     @Schema(description = "비디오 url", example = "https://neordinary.s3.eu-north-1.amazonaws.com/APPLE_STORE.mp4")
     private String videoUrl;
+    @Schema(description = "북마크 여부", example = "true")
+    private Boolean bookmarked;
 }

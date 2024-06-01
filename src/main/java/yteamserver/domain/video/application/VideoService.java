@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import yteamserver.domain.bookmark.domain.repository.VideoBookmarkRepository;
 import yteamserver.domain.store.domain.Store;
 import yteamserver.domain.store.domain.repository.StoreRepository;
 import yteamserver.domain.users.domain.repository.UserRepository;
@@ -29,6 +30,7 @@ public class VideoService {
     private final VideoRepository videoRepository;
     private final StoreRepository storeRepository;
     private final UserRepository userRepository;
+    private final VideoBookmarkRepository videoBookmarkRepository;
 
     private final S3Service s3Service;
 
@@ -64,14 +66,18 @@ public class VideoService {
         Page<Video> videosPage = videoRepository.findAll(pageable);
 
         List<GetVidedoRes> findVideoResList = videosPage.getContent().stream()
-                .map(video -> GetVidedoRes.builder()
-                        .id(video.getId())
-                        .title(video.getTitle())
-                        .userName(video.getUsers() != null ? video.getUsers().getName() : video.getStore().getStoreName())
-                        .viewCount(video.getViewCount())
-                        .videoUrl(video.getVideoUrl())
-                        .ThumbnailUrl(video.getThumbnailUrl())
-                        .build())
+                .map(video -> {
+                    boolean isBookmarked = videoBookmarkRepository.findByUserIdAndVideoId(1L, video.getId()).isPresent();
+                    return GetVidedoRes.builder()
+                            .id(video.getId())
+                            .title(video.getTitle())
+                            .userName(video.getUsers() != null ? video.getUsers().getName() : video.getStore().getStoreName())
+                            .viewCount(video.getViewCount())
+                            .videoUrl(video.getVideoUrl())
+                            .ThumbnailUrl(video.getThumbnailUrl())
+                            .bookmarked(isBookmarked)
+                            .build();
+                })
                 .collect(Collectors.toList());
 
         return new PageImpl<>(findVideoResList, pageable, videosPage.getTotalElements());
