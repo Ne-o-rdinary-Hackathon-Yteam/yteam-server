@@ -1,5 +1,6 @@
 package yteamserver.domain.video.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,11 +11,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class GetVidedoRes {
+    @Schema(description = "비디오 id", example = "1")
     private Long id;
+    @Schema(description = "유저 이름", example = "홍길동")
     private String userName;
-    private Long storeId;
+    @Schema(description = "비디오 제목", example = "비디오 제목")
     private String title;
+    @Schema(description = "썸네일 이미지", example = "https://neordinary.s3.eu-north-1.amazonaws.com/apple_store_thumbnail.png")
     private String ThumbnailUrl;
+    @Schema(description = "조회수", example = "100")
     private Integer viewCount;
+    @Schema(description = "비디오 url", example = "https://neordinary.s3.eu-north-1.amazonaws.com/APPLE_STORE.mp4")
     private String videoUrl;
 }

@@ -53,6 +53,9 @@ public class ViewHomepageRes {
 
         @Schema(type = "string", example = "https://neordinary.s3.eu-north-1.amazonaws.com/beans.png", description = "비디오 썸네일 url을 출력합니다.")
         private String thumbnailUrl;
+
+        @Schema(type = "boolean", example = "true", description = "북마크 여부를 출력합니다.")
+        private Boolean bookmarked;
     }
 
     @Data
@@ -84,7 +87,7 @@ public class ViewHomepageRes {
         private Integer chance;
 
         @Schema(type = "enum", example = "1", description = "캐릭터 레벨을 출력합니다.")
-        private Level level;
+        private Integer level;
     }
 
 

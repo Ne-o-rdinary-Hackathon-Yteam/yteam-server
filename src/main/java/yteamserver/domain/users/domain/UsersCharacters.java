@@ -27,18 +27,13 @@ public class UsersCharacters extends BaseEntity {
     @JoinColumn(name = "character_id")
     private Characters characters;
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "level", nullable = false)
-    private Level level;
-
     @Column(name = "exp", nullable = false)
     private Integer exp;
 
     @Builder
-    public UsersCharacters(Users users, Characters characters, Level level, Integer exp) {
+    public UsersCharacters(Users users, Characters characters, Integer exp) {
         this.users = users;
         this.characters = characters;
-        this.level = level;
         this.exp = exp;
     }
 }
