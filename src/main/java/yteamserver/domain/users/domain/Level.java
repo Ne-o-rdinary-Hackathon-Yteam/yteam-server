@@ -6,7 +6,12 @@ import lombok.Getter;
 public enum Level {
     SEED(1, "씨앗"),
     SPROUT(2, "새싹"),
-    HOST(3, "성체");
+    CARROT(3, "당근"),
+    CORN(3, "옥수수"),
+    SWEET_POTATO(3, "고구마"),
+    CABBAGE(3, "양배추"),
+    APPLE(3, "사과"),
+    POTATO(3, "감자");
 
     private final Integer levelValue;
     private final String levelName;
