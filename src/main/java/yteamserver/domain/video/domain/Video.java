@@ -39,6 +39,12 @@ public class Video extends BaseEntity {
     private String thumbnailUrl;
 
 
+    public Integer updateViewCount() {
+        this.viewCount += 1;
+        return this.viewCount;
+    }
+
+
     @Builder
     public Video(String title, Integer viewCount, Users users, Store store, String videoUrl, String thumbnailUrl) {
         this.title = title;

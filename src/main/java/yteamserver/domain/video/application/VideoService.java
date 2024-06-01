@@ -69,7 +69,7 @@ public class VideoService {
                         .title(video.getTitle())
                         .userName(video.getUsers().getName())
                         .storeId(video.getStore().getId())
-                        .viewCount(video.getViewCount())
+                        .viewCount(video.updateViewCount())
                         .videoUrl(video.getVideoUrl())
                         .ThumbnailUrl(video.getThumbnailUrl())
                         .build())
