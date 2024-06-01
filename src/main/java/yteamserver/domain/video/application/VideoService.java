@@ -75,12 +75,16 @@ public class VideoService {
     }
 
     @Transactional
-    public Page<GetVidedoRes> getVideo(Pageable pageable) {
+    public Page<GetVidedoRes> getVideo(Pageable pageable, String token) {
         Page<Video> videosPage = videoRepository.findAll(pageable);
+        Users user = userRepository.findByToken(token).orElse(null);
 
         List<GetVidedoRes> findVideoResList = videosPage.getContent().stream()
                 .map(video -> {
-                    boolean isBookmarked = videoBookmarkRepository.findByUserIdAndVideoId(1L, video.getId()).isPresent();
+                    boolean isBookmarked = false;
+                    if(user != null) {
+                        isBookmarked = videoBookmarkRepository.findByUserIdAndVideoId(user.getId(), video.getId()).isPresent();
+                    }
                     Integer bookmarkedCount = videoBookmarkRepository.countByVideo_Id(video.getId());
                     return GetVidedoRes.builder()
                             .id(video.getId())

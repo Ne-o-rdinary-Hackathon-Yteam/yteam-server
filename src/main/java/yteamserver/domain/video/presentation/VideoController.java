@@ -49,9 +49,9 @@ public class VideoController {
             @ApiResponse(responseCode = "400", description = "비디오 조회 실패", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
     })
     @GetMapping("/get")
-    public ResponseEntity<Response> getVideo(@RequestParam(defaultValue = "0") int page) {
+    public ResponseEntity<Response> getVideo(@RequestParam(defaultValue = "0") int page, @RequestParam String token) {
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("createdAt")));
-        Page<GetVidedoRes> videos = videoService.getVideo(pageable);
+        Page<GetVidedoRes> videos = videoService.getVideo(pageable, token);
         return Response.of(HttpStatus.OK, videos);
     }
 
