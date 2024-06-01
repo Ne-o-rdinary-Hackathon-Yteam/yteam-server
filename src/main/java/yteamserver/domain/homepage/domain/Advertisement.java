@@ -21,6 +21,9 @@ public class Advertisement extends BaseEntity {
     @Column(name = "content")
     private String content;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @Column(name = "ad_url")
     private String adUrl;
 }
