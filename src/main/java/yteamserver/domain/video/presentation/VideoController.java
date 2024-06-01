@@ -39,5 +39,19 @@ public class VideoController {
         return Response.of(HttpStatus.OK, videoRes);
     }
 
+    @Operation(summary = "숏폼 비디오 조회", description = "숏폼 비디오를 조회합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "비디오 조회 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+            @ApiResponse(responseCode = "400", description = "비디오 조회 실패", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
+    })
+    @PostMapping("/get")
+    public ResponseEntity<Response> getVideo(
+//            @Parameter(description = "게시물의 id를 입력해주세요.") @ModelAttribute CreateVideoReq createVideoReq
+    ) {
+//        CreateVideoRes videoRes = videoService.createVideo(createVideoReq);
+//        return Response.of(HttpStatus.OK, videoRes);
+        return null;
+    }
+
 
 }
