@@ -26,6 +26,11 @@ public class BookmarkService {
         Video video = videoRepository.findById(videoId)
                 .orElseThrow(() -> new GeneralException(ErrorCode.VIDEO_NOT_FOUND));
 
+        // 이미 북마크로 등록된 영상인지 검증
+        if (videoBookmarkRepository.existsByUser_IdAndVideo_Id(user.getId(), video.getId())) {
+            throw new GeneralException(ErrorCode.VIDEO_ALREADY_BOOKMARKED);
+        }
+
         VideoBookmark videoBookmark = VideoBookmark.builder()
                 .user(user)
                 .video(video)
