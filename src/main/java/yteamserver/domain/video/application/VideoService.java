@@ -11,6 +11,7 @@ import yteamserver.domain.video.domain.Video;
 import yteamserver.domain.video.domain.repository.VideoRepository;
 import yteamserver.domain.video.dto.CreateVideoReq;
 import yteamserver.domain.video.dto.CreateVideoRes;
+import yteamserver.global.config.s3.S3Service;
 
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -20,6 +21,8 @@ public class VideoService {
     private final VideoRepository videoRepository;
     private final StoreRepository storeRepository;
     private final UserRepository userRepository;
+
+    private final S3Service s3Service;
 
     @Transactional
     public CreateVideoRes createVideo(CreateVideoReq createVideoReq) {
@@ -36,7 +39,7 @@ public class VideoService {
                 .title(createVideoReq.getTitle())
                 .content(createVideoReq.getContent())
                 .store(store)
-                .videoUrl("temp") // 비디오 업로드 기능 구현 후 입력
+                .videoUrl(s3Service.uploadImageToS3(createVideoReq.getVideo())) // 비디오 업로드 기능 구현 후 입력
                 .build();
 
 
