@@ -7,6 +7,8 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -28,12 +30,15 @@ public class Users extends BaseEntity {
     @Column(name = "token")
     private String token;
 
+    @OneToMany(mappedBy = "users", fetch = FetchType.LAZY)
+    private List<UsersCharacters> usersCharacters;
 
     @Builder
-    public Users(String name, String profileUrl, Integer points, String token) {
+    public Users(String name, String profileUrl, Integer points, String token, List<UsersCharacters> usersCharacters) {
         this.name = name;
         this.profileUrl = profileUrl;
         this.points = points;
         this.token = token;
+        this.usersCharacters = usersCharacters;
     }
 }
