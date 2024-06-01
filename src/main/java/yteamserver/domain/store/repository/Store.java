@@ -1,10 +1,12 @@
-package yteamserver.domain.store;
+package yteamserver.domain.store.repository;
 
+import lombok.Builder;
 import yteamserver.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import yteamserver.domain.store.Category;
 
 @Entity
 @Getter
@@ -15,9 +17,15 @@ public class Store extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "store_name")
+    private String storeName;
 
-    @Column(name = "category")
-    private Category category;
+//    @Column(name = "category")
+//    private Category category;
+
+
+    @Builder
+    public Store(String storeName) {
+        this.storeName = storeName;
+    }
 }

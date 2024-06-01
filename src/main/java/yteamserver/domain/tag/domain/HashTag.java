@@ -1,26 +1,25 @@
-package yteamserver.domain.users;
+package yteamserver.domain.tag.domain;
 
-import yteamserver.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import yteamserver.domain.common.BaseEntity;
+import yteamserver.domain.video.domain.Video;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "users")
-public class Users extends BaseEntity {
+@Table(name = "hashtag")
+public class HashTag extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "video_id")
+    private Video video;
+
     @Column(name = "name")
     private String name;
-
-    @Column(name = "profile_url")
-    private String profileUrl;
-
-    @Column(name = "token")
-    private String token;
 }
