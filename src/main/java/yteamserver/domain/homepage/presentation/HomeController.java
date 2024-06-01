@@ -31,13 +31,11 @@ public class HomeController {
             @ApiResponse(responseCode = "200", description = "홈 화면 조회 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = ViewHomepageRes.class))}),
             @ApiResponse(responseCode = "400", description = "홈 화면 조회 실패", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
     })
-    @GetMapping("/view")
+    @GetMapping("/view/{token}")
     public ResponseEntity<Response> viewHomepage(
-            @Parameter(description = "token을 입력해주세요.") @RequestBody TokenDto tokenDto
-            ) {
+            @Parameter(description = "token을 입력해 주세요") @PathVariable("token") String token
+    ) {
         // 항상 로그인 했다고 생각
-        String token = tokenDto.getToken();
-//        System.out.println("token = " + token);
         ViewHomepageRes viewHomepageRes = homeService.viewHomepage();
         return Response.of(HttpStatus.OK, viewHomepageRes);
     }
