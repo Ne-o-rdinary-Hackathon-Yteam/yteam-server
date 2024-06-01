@@ -35,6 +35,14 @@ public class BookmarkController {
         return Response.of(HttpStatus.OK);
     }
 
+    @Operation(summary = "영상 북마크 삭제", description = "유저가 북마크한 영상을 북마크에서 제거합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "영상 북마크 삭제 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = VideoBookmarkReq.class))}),
+            @ApiResponse(responseCode = "400", description = "북마크로 등록되지 않은 비디오입니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+            @ApiResponse(responseCode = "404", description = "사용자를 찾을 수 없습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+            @ApiResponse(responseCode = "404", description = "비디오가 존재하지 않습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+            @ApiResponse(responseCode = "500", description = "영상 북마크 삭제 실패", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
+    })
     @DeleteMapping("/videos")
     public ResponseEntity<Response> deleteVideoBookmark(@RequestBody VideoBookmarkReq req) {
         bookmarkService.deleteVideoBookmark(req.getToken(), req.getVideoId());
