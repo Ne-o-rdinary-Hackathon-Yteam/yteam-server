@@ -57,7 +57,7 @@ public class UserService {
         Users user = userRepository.findById(userId)
                 .orElseThrow(() -> new GeneralException(ErrorCode.USER_NOT_FOUND));
 
-        Characters character = characterRepository.findByKind(Kind.fromKind(request.getCharacterName()))
+        Characters character = characterRepository.findByKindAndLevel(Kind.fromKind(request.getCharacterName()), 1)
                 .orElseThrow(() -> new GeneralException(ErrorCode.CHARACTER_NOT_FOUND));
 
         UsersCharacters usersCharacters = UsersCharacters.builder()
