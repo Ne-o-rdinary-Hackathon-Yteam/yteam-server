@@ -3,6 +3,7 @@ package yteamserver.domain.homepage.application;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import yteamserver.domain.bookmark.domain.repository.VideoBookmarkRepository;
 import yteamserver.domain.homepage.domain.Advertisement;
 import yteamserver.domain.homepage.domain.repository.AdvertisementRepository;
 import yteamserver.domain.homepage.dto.ViewHomepageRes;
@@ -25,6 +26,7 @@ public class HomeService {
     private final VideoRepository videoRepository;
     private final StoreRepository storeRepository;
     private final UserRepository userRepository;
+    private final VideoBookmarkRepository videoBookmarkRepository;
 
     @Transactional
     public ViewHomepageRes viewHomepage() {
@@ -48,11 +50,15 @@ public class HomeService {
         // 비디오 목록 가져오기
         List<Video> recentlyFiveVideo = videoRepository.findRecentlyFive();
         List<ViewHomepageRes.VideoRes> videoResList = recentlyFiveVideo.stream()
-                .map(video -> ViewHomepageRes.VideoRes.builder()
-                        .id(video.getId())
-                        .title(video.getTitle())
-                        .thumbnailUrl(video.getThumbnailUrl())
-                        .build())
+                .map(video -> {
+                    boolean isBookmarked = videoBookmarkRepository.findByUserIdAndVideoId(users.getId(), video.getId()).isPresent();
+                    return ViewHomepageRes.VideoRes.builder()
+                            .id(video.getId())
+                            .title(video.getTitle())
+                            .thumbnailUrl(video.getThumbnailUrl())
+                            .bookmarked(isBookmarked)
+                            .build();
+                })
                 .collect(Collectors.toList());
 
         // 요즘 뜨는 셀러 가져오기
