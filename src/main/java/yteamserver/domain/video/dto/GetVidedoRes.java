@@ -23,4 +23,6 @@ public class GetVidedoRes {
     private Integer viewCount;
     @Schema(description = "비디오 url", example = "https://neordinary.s3.eu-north-1.amazonaws.com/APPLE_STORE.mp4")
     private String videoUrl;
+    @Schema(description = "상품 구매 링크", example = "https://smartstore.naver.com/sweetfarmers/products/5300481447?")
+    private String storeLink;
 }
