@@ -31,6 +31,7 @@ public class HomeService {
 
         // 유저 파싱
 //        Users users = userRepository.findJoinedUserById(1L).orElseThrow(RuntimeException::new);
+        Users users = userRepository.findById2(1L).orElseThrow(RuntimeException::new);
 
 
         // 광고 목록 가져오기
@@ -65,14 +66,15 @@ public class HomeService {
                         .build())
                 .collect(Collectors.toList());
 
-        //룰렛 돌리러 고고
-//        int chance = users.getPoints() / 10;
-//        ViewHomepageRes.CharacterRes.builder()
-//                .chance(chance)
-//                .cUrl()
-//                .level()
-//                .kind()
-//                .build();
+//        룰렛 돌리러 고고
+        Users newUser = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        int chance = newUser.getPoints() / 10;
+        ViewHomepageRes.CharacterRes characterRes = ViewHomepageRes.CharacterRes.builder()
+                .chance(chance)
+                .cUrl(users.getUsersCharacters().get(0).getCharacters().getImageUrl())
+                .level(users.getUsersCharacters().get(0).getLevel())
+                .kind(users.getUsersCharacters().get(0).getCharacters().getKind())
+                .build();
 
 
         // 합쳐서 리턴하기
@@ -80,7 +82,7 @@ public class HomeService {
                 .advertisements(advertisementResList)
                 .videos(videoResList)
                 .stores(storeResList)
-//                .characterObjet()
+                .characterObjet(characterRes)
                 .build();
 
         return viewHomepageRes;

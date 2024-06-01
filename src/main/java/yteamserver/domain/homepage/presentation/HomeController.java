@@ -33,10 +33,11 @@ public class HomeController {
     })
     @GetMapping("/view")
     public ResponseEntity<Response> viewHomepage(
-//            @Parameter(description = "token을 입력해주세요.") @RequestBody TokenDto tokenDto
+            @Parameter(description = "token을 입력해주세요.") @RequestBody TokenDto tokenDto
             ) {
         // 항상 로그인 했다고 생각
-//        String token = tokenDto.getToken();
+        String token = tokenDto.getToken();
+//        System.out.println("token = " + token);
         ViewHomepageRes viewHomepageRes = homeService.viewHomepage();
         return Response.of(HttpStatus.OK, viewHomepageRes);
     }
