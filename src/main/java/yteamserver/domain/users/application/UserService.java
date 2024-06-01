@@ -3,10 +3,10 @@ package yteamserver.domain.users.application;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import yteamserver.domain.users.presentation.response.UserCharacterResponse;
-import yteamserver.domain.users.repository.UserCharacterRepository;
-import yteamserver.domain.users.repository.UserRepository;
-import yteamserver.domain.users.repository.Users;
-import yteamserver.domain.users.repository.UsersCharacters;
+import yteamserver.domain.users.domain.repository.UserCharacterRepository;
+import yteamserver.domain.users.domain.repository.UserRepository;
+import yteamserver.domain.users.domain.Users;
+import yteamserver.domain.users.domain.UsersCharacters;
 import yteamserver.global.error.ErrorCode;
 import yteamserver.global.error.GeneralException;
 

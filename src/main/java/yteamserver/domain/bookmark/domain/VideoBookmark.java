@@ -5,7 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import yteamserver.domain.users.repository.Users;
+import yteamserver.domain.users.domain.Users;
 import yteamserver.domain.video.domain.Video;
 
 @Entity

@@ -4,14 +4,15 @@ import lombok.Builder;
 import lombok.Getter;
 import yteamserver.domain.characters.Kind;
 import yteamserver.domain.characters.domain.Characters;
-import yteamserver.domain.users.repository.UsersCharacters;
+import yteamserver.domain.users.domain.UsersCharacters;
 
 @Getter
 @Builder
 public class UserCharacterResponse {
     private Long id;
     private String imageUrl;
-    private Integer level;
+    private Integer levelValue;
+    private String levelName;
     private Kind kind;
     private Integer exp;
 
@@ -19,7 +20,8 @@ public class UserCharacterResponse {
         return UserCharacterResponse.builder()
                 .id(usersCharacters.getId())
                 .imageUrl(characters.getImageUrl())
-                .level(usersCharacters.getLevel())
+                .levelValue(usersCharacters.getLevel().getLevelValue())
+                .levelName(usersCharacters.getLevel().getLevelName())
                 .kind(characters.getKind())
                 .exp(usersCharacters.getExp())
                 .build();

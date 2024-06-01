@@ -1,6 +1,7 @@
-package yteamserver.domain.users.repository;
+package yteamserver.domain.users.domain.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import yteamserver.domain.users.domain.Users;
 
 import java.util.Optional;
 
