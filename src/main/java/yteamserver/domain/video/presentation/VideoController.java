@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import yteamserver.domain.video.application.VideoService;
 import yteamserver.domain.video.dto.CreateVideoReq;
 import yteamserver.domain.video.dto.CreateVideoRes;
+import yteamserver.domain.video.dto.GetVidedoRes;
 import yteamserver.global.response.Response;
+
+import java.awt.print.Pageable;
 
 @Tag(name = "Video", description = "Video API")
 @RestController
@@ -39,19 +42,18 @@ public class VideoController {
         return Response.of(HttpStatus.OK, videoRes);
     }
 
-    @Operation(summary = "숏폼 비디오 조회", description = "숏폼 비디오를 조회합니다.")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "비디오 조회 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
-            @ApiResponse(responseCode = "400", description = "비디오 조회 실패", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
-    })
-    @PostMapping("/get")
-    public ResponseEntity<Response> getVideo(
-//            @Parameter(description = "게시물의 id를 입력해주세요.") @ModelAttribute CreateVideoReq createVideoReq
-    ) {
+//    @Operation(summary = "숏폼 비디오 조회", description = "숏폼 비디오를 10개 조회합니다.")
+//    @ApiResponses(value = {
+//            @ApiResponse(responseCode = "200", description = "비디오 조회 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+//            @ApiResponse(responseCode = "400", description = "비디오 조회 실패", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
+//    })
+//    @PostMapping("/get")
+//    public ResponseEntity<Response> getVideo(Pageable pageable) {
+//        GetVidedoRes getVidedoRes = videoService.getVideo(getVideoReq);
 //        CreateVideoRes videoRes = videoService.createVideo(createVideoReq);
 //        return Response.of(HttpStatus.OK, videoRes);
-        return null;
-    }
+//        return Response.of(HttpStatus.OK, );
+//    }
 
 
 }

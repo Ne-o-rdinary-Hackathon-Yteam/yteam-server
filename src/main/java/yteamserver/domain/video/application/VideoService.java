@@ -37,7 +37,7 @@ public class VideoService {
         Video video = Video.builder()
                 .users(users)
                 .title(createVideoReq.getTitle())
-                .content(createVideoReq.getContent())
+                .viewCount(0)
                 .store(store)
                 .videoUrl(s3Service.uploadImageToS3(createVideoReq.getVideo())) // 비디오 업로드 기능 구현 후 입력
                 .build();
