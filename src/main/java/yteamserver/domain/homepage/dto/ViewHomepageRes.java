@@ -2,7 +2,7 @@ package yteamserver.domain.homepage.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
-import yteamserver.domain.characters.Kind;
+import yteamserver.domain.characters.domain.Kind;
 import yteamserver.domain.users.domain.Level;
 
 import java.util.List;
