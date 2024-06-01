@@ -49,7 +49,7 @@ public class VideoService {
                 .title(createVideoReq.getTitle())
                 .viewCount(0)
                 .store(store)
-                .videoUrl(s3Service.uploadImageToS3(createVideoReq.getVideo())) // 비디오 업로드 기능 구현 후 입력
+                .videoUrl(s3Service.uploadImageToS3(createVideoReq.getVideo()))
                 .build();
 
 
@@ -76,6 +76,7 @@ public class VideoService {
                             .videoUrl(video.getVideoUrl())
                             .ThumbnailUrl(video.getThumbnailUrl())
                             .bookmarked(isBookmarked)
+                            .storeLink(video.getStore() != null ? video.getStore().getStoreLink() : null)
                             .build();
                 })
                 .collect(Collectors.toList());

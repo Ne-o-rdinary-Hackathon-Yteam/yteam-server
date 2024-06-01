@@ -22,6 +22,9 @@ public class Store extends BaseEntity {
     @Column(name = "img_url")
     private String imgUrl;
 
+    @Column(name = "store_link")
+    private String storeLink;
+
     @Column(name = "hashtags")
     private String hashtags;
 
