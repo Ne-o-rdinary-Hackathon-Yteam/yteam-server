@@ -20,9 +20,7 @@ public class Characters extends BaseEntity {
     @Column(name = "image_url", nullable = false)
     private String imageUrl;
 
-    @Column(name = "level", nullable = false)
-    private Integer level;
-
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "kind", nullable = false)
     private Kind kind;
 }

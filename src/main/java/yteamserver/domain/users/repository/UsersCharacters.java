@@ -1,12 +1,12 @@
-package yteamserver.domain.characters.domain;
+package yteamserver.domain.users.repository;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import yteamserver.domain.characters.domain.Characters;
 import yteamserver.domain.common.BaseEntity;
-import yteamserver.domain.users.repository.Users;
 
 @Entity
 @Getter
@@ -24,6 +24,9 @@ public class UsersCharacters extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "character_id")
     private Characters characters;
+
+    @Column(name = "level", nullable = false)
+    private Integer level;
 
     @Column(name = "exp", nullable = false)
     private Integer exp;
