@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import yteamserver.domain.characters.domain.Characters;
 import yteamserver.domain.characters.domain.Kind;
 import yteamserver.domain.characters.domain.repository.CharacterRepository;
-import yteamserver.domain.users.domain.Level;
 import yteamserver.domain.users.presentation.request.UserCharacterCreateRequest;
 import yteamserver.domain.users.presentation.response.UserCharacterCreateResponse;
 import yteamserver.domain.users.presentation.response.UserCharacterGetResponse;
@@ -64,7 +63,6 @@ public class UserService {
         UsersCharacters usersCharacters = UsersCharacters.builder()
                 .users(user)
                 .characters(character)
-                .level(Level.SEED)
                 .exp(0)
                 .build();
 
