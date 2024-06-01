@@ -36,6 +36,23 @@ public class UserService {
         return response;
     }
 
+    public void updateUserPoints(String token, Integer points) {
+        Users user = userRepository.findByToken(token)
+                .orElseThrow(() -> new GeneralException(ErrorCode.USER_NOT_FOUND));
+
+        Integer updatedPoints = user.getPoints() + points;
+
+        if(updatedPoints < 0) {
+            throw new GeneralException(ErrorCode.POINTS_NOT_ENOUGH);
+        }
+
+        user.builder()
+                .points(updatedPoints)
+                .build();
+
+        userRepository.save(user);
+    }
+
     @Transactional
     public UserCharacterCreateResponse createUserCharacter(Long userId, UserCharacterCreateRequest request) {
         Users user = userRepository.findById(userId)
