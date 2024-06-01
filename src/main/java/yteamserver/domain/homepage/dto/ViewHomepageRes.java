@@ -87,7 +87,7 @@ public class ViewHomepageRes {
         private Integer chance;
 
         @Schema(type = "enum", example = "1", description = "캐릭터 레벨을 출력합니다.")
-        private Level level;
+        private Integer level;
     }
 
 

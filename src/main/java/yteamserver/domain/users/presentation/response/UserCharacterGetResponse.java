@@ -20,8 +20,8 @@ public class UserCharacterGetResponse {
         return UserCharacterGetResponse.builder()
                 .id(usersCharacters.getId())
                 .imageUrl(characters.getImageUrl())
-                .levelValue(usersCharacters.getLevel().getLevelValue())
-                .levelName(usersCharacters.getLevel().getLevelName())
+                .levelValue(usersCharacters.getCharacters().getLevel())
+                .levelName(usersCharacters.getCharacters().getLevelName())
                 .kind(characters.getKind())
                 .exp(usersCharacters.getExp())
                 .build();
