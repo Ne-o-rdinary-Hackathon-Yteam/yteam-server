@@ -1,4 +1,4 @@
-package yteamserver.domain.bookmark;
+package yteamserver.domain.bookmark.domain;
 
 import yteamserver.domain.common.BaseEntity;
 import yteamserver.domain.store.domain.Store;
@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table(name = "BookmarkStore")
-public class BookmarkStore extends BaseEntity {
+@Table(name = "StoreBookmark")
+public class StoreBookmark extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
