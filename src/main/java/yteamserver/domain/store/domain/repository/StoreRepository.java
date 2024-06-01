@@ -13,8 +13,8 @@ public interface StoreRepository extends JpaRepository<Store, Long> {
 
     @Query(value = "SELECT s.* FROM store s\n" +
             "JOIN ( \n" +
-            "    SELECT v.store_id FROM video v ORDER BY v.view_count DESC LIMIT 6\n" +
+            "    SELECT DISTINCT v.store_id FROM video v ORDER BY v.view_count DESC\n" +
             ") AS top_stores\n" +
-            "ON s.id = top_stores.store_id", nativeQuery = true)
+            "ON s.id = top_stores.store_id LIMIT 6", nativeQuery = true)
     List<Store> findAllByViewCount();
 }
