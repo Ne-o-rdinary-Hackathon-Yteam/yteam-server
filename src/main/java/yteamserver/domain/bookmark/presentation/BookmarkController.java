@@ -23,7 +23,7 @@ public class BookmarkController {
 
     @Operation(summary = "영상 북마크 등록", description = "유저가 영상의 북마크 아이콘을 눌렀을 때 북마크를 등록합니다.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "영상 북마크 등록 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = VideoBookmarkReq.class))}),
+            @ApiResponse(responseCode = "200", description = "영상 북마크 등록 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
             @ApiResponse(responseCode = "400", description = "이미 북마크로 등록된 비디오입니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
             @ApiResponse(responseCode = "404", description = "사용자를 찾을 수 없습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
             @ApiResponse(responseCode = "404", description = "비디오가 존재하지 않습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
@@ -37,7 +37,7 @@ public class BookmarkController {
 
     @Operation(summary = "영상 북마크 삭제", description = "유저가 북마크한 영상을 북마크에서 제거합니다.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "영상 북마크 삭제 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = VideoBookmarkReq.class))}),
+            @ApiResponse(responseCode = "200", description = "영상 북마크 삭제 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
             @ApiResponse(responseCode = "400", description = "북마크로 등록되지 않은 비디오입니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
             @ApiResponse(responseCode = "404", description = "사용자를 찾을 수 없습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
             @ApiResponse(responseCode = "404", description = "비디오가 존재하지 않습니다.", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
