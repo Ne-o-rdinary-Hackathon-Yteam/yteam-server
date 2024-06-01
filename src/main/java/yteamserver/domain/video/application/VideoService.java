@@ -81,6 +81,7 @@ public class VideoService {
         List<GetVidedoRes> findVideoResList = videosPage.getContent().stream()
                 .map(video -> {
                     boolean isBookmarked = videoBookmarkRepository.findByUserIdAndVideoId(1L, video.getId()).isPresent();
+                    Integer bookmarkedCount = videoBookmarkRepository.countByVideo_Id(video.getId());
                     return GetVidedoRes.builder()
                             .id(video.getId())
                             .title(video.getTitle())
@@ -89,6 +90,7 @@ public class VideoService {
                             .videoUrl(video.getVideoUrl())
                             .ThumbnailUrl(video.getThumbnailUrl())
                             .bookmarked(isBookmarked)
+                            .bookmarkCount(bookmarkedCount)
                             .storeLink(video.getStore() != null ? video.getStore().getStoreLink() : null)
                             .build();
                 })

@@ -27,4 +27,6 @@ public class GetVidedoRes {
     private String storeLink;
     @Schema(description = "북마크 여부", example = "true")
     private Boolean bookmarked;
+    @Schema(description = "북마크 수", example = "100")
+    private Integer bookmarkCount;
 }
