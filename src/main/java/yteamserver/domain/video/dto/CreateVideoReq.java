@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Builder
@@ -24,8 +25,6 @@ public class CreateVideoReq {
     @Schema(type = "string", example = "청년 농부", description = "가게 이름")
     private String storeName;
 
-    @Schema(type = "string", description = "첨부할 동영상 파일")
-//    @Schema(type = "string", description = "첨부할 동영상 파일", format = "binary")
-//    private MultipartFile video; 영상 업로드 기능 구현 후 다시 수정해야함 Todo
-    private String video;
+    @Schema(type = "string", description = "첨부할 동영상 파일", format = "binary")
+    private MultipartFile video;
 }
