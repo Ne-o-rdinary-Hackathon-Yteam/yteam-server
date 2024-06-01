@@ -9,6 +9,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +22,6 @@ import yteamserver.domain.video.dto.CreateVideoRes;
 import yteamserver.domain.video.dto.GetVidedoRes;
 import yteamserver.global.response.Response;
 
-import java.awt.print.Pageable;
 
 @Tag(name = "Video", description = "Video API")
 @RestController
@@ -42,18 +45,17 @@ public class VideoController {
         return Response.of(HttpStatus.OK, videoRes);
     }
 
-//    @Operation(summary = "숏폼 비디오 조회", description = "숏폼 비디오를 10개 조회합니다.")
-//    @ApiResponses(value = {
-//            @ApiResponse(responseCode = "200", description = "비디오 조회 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
-//            @ApiResponse(responseCode = "400", description = "비디오 조회 실패", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
-//    })
-//    @PostMapping("/get")
-//    public ResponseEntity<Response> getVideo(Pageable pageable) {
-//        GetVidedoRes getVidedoRes = videoService.getVideo(getVideoReq);
-//        CreateVideoRes videoRes = videoService.createVideo(createVideoReq);
-//        return Response.of(HttpStatus.OK, videoRes);
-//        return Response.of(HttpStatus.OK, );
-//    }
+    @Operation(summary = "숏폼 비디오 조회", description = "숏폼 비디오를 10개 조회합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "비디오 조회 성공", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))}),
+            @ApiResponse(responseCode = "400", description = "비디오 조회 실패", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Response.class))})
+    })
+    @GetMapping("/get")
+    public ResponseEntity<Response> getVideo(@RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Order.desc("createdAt")));
+        Page<GetVidedoRes> videos = videoService.getVideo(pageable);
+        return Response.of(HttpStatus.OK, videos);
+    }
 
 
 }
