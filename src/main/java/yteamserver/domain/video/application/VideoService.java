@@ -14,9 +14,10 @@ import yteamserver.domain.users.domain.Users;
 import yteamserver.domain.video.domain.Video;
 import yteamserver.domain.video.domain.repository.VideoRepository;
 import yteamserver.domain.video.dto.CreateVideoReq;
-import yteamserver.domain.video.dto.CreateVideoRes;
 import yteamserver.domain.video.dto.GetVidedoRes;
 import yteamserver.global.config.s3.S3Service;
+import yteamserver.global.error.ErrorCode;
+import yteamserver.global.error.GeneralException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -35,30 +36,42 @@ public class VideoService {
     private final S3Service s3Service;
 
     @Transactional
-    public CreateVideoRes createVideo(CreateVideoReq createVideoReq) {
+    public void createVideo(CreateVideoReq createVideoReq) {
 
         // To-do 유저 도메인 구현되고 수정해야함.
-        Users users = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+        Users users = userRepository.findByToken(createVideoReq.getToken())
+                .orElseThrow(() -> new GeneralException(ErrorCode.USER_NOT_FOUND));
 
-        // Store
-        Store store = storeRepository.findByStoreName(createVideoReq.getStoreName()).orElseThrow(RuntimeException::new);
-        System.out.println("store = " + store.getStoreName());
+        // 업로더가 업체인 경우
+        if(createVideoReq.getIsStore()) {
+            // Store
+            Store store = storeRepository.findByStoreName(createVideoReq.getName())
+                    .orElseThrow(() -> new GeneralException(ErrorCode.STORE_NOT_FOUND));
+
+            Video video = Video.builder()
+                    .title(createVideoReq.getTitle())
+                    .viewCount(0)
+                    .store(store)
+                    .videoUrl(s3Service.uploadImageToS3(createVideoReq.getVideo()))
+                    .build();
+
+            videoRepository.save(video);
+            return;
+        }
+
+        // User인 경우
+        Users user = userRepository.findByName(createVideoReq.getName())
+                .orElseThrow(() -> new GeneralException(ErrorCode.USER_NOT_FOUND));
 
         Video video = Video.builder()
-                .users(users)
                 .title(createVideoReq.getTitle())
                 .viewCount(0)
-                .store(store)
+                .user(user)
                 .videoUrl(s3Service.uploadImageToS3(createVideoReq.getVideo()))
                 .build();
 
 
         videoRepository.save(video);
-
-        return CreateVideoRes.builder()
-                .id(video.getId())
-                .build();
-
     }
 
     @Transactional
@@ -71,7 +84,7 @@ public class VideoService {
                     return GetVidedoRes.builder()
                             .id(video.getId())
                             .title(video.getTitle())
-                            .userName(video.getUsers() != null ? video.getUsers().getName() : video.getStore().getStoreName())
+                            .userName(video.getUser() != null ? video.getUser().getName() : video.getStore().getStoreName())
                             .viewCount(video.getViewCount())
                             .videoUrl(video.getVideoUrl())
                             .ThumbnailUrl(video.getThumbnailUrl())

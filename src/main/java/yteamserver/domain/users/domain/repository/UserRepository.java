@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<Users, Long> {
     Optional<Users> findByToken(String token);
+    Optional<Users> findByName(String name);
 
     @Query("SELECT u FROM Users u JOIN FETCH u.usersCharacters uc JOIN FETCH uc.characters c WHERE u.id = :id")
     Optional<Users> findById2(@Param("id") long id);
