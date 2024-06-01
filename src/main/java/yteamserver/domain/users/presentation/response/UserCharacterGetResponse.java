@@ -2,22 +2,22 @@ package yteamserver.domain.users.presentation.response;
 
 import lombok.Builder;
 import lombok.Getter;
-import yteamserver.domain.characters.Kind;
+import yteamserver.domain.characters.domain.Kind;
 import yteamserver.domain.characters.domain.Characters;
 import yteamserver.domain.users.domain.UsersCharacters;
 
 @Getter
 @Builder
-public class UserCharacterResponse {
-    private Long id;
-    private String imageUrl;
-    private Integer levelValue;
-    private String levelName;
-    private Kind kind;
-    private Integer exp;
+public class UserCharacterGetResponse {
+    private final Long id;
+    private final String imageUrl;
+    private final Integer levelValue;
+    private final String levelName;
+    private final Kind kind;
+    private final Integer exp;
 
-    public static UserCharacterResponse from(Characters characters, UsersCharacters usersCharacters) {
-        return UserCharacterResponse.builder()
+    public static UserCharacterGetResponse from(Characters characters, UsersCharacters usersCharacters) {
+        return UserCharacterGetResponse.builder()
                 .id(usersCharacters.getId())
                 .imageUrl(characters.getImageUrl())
                 .levelValue(usersCharacters.getLevel().getLevelValue())
