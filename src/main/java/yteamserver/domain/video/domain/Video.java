@@ -1,4 +1,4 @@
-package yteamserver.domain.video;
+package yteamserver.domain.video.domain;
 
 import yteamserver.domain.common.BaseEntity;
 import yteamserver.domain.store.Store;
